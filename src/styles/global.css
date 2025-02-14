@@ -12,7 +12,17 @@
 	--gray: 169, 169, 169;                    /* Gray color for shadows */
 	--white: 255, 255, 255;                   /* White color */
   }
-  
+  main {
+	width: 720px;
+	max-width: calc(100% - 2em);
+	margin: auto;
+	padding: 3em 1em;
+}
+  body {
+	font-family: 'Atkinson', sans-serif;
+	margin: 0;
+	padding: 0;
+}
   /* Global styles for Light Mode */
   html {
 	background-color: #f1f5f9;                /* Light background */
