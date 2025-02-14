@@ -9,10 +9,10 @@ import "../styles/global.css";
   <nav>
     <h2><a href="/">{SITE_TITLE}</a></h2>
     <div class="internal-links">
-      <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/blog">Blog</HeaderLink>
-      <HeaderLink href="/about">About</HeaderLink>
-      <HeaderLink href="/tags">Tags</HeaderLink>
+      <a href="/">Home</a>
+      <a href="/blog">Blog</a>
+      <a href="/about">About</a>
+      <a href="/tags">Tags</a>
     </div>
     <DarkMode />
   </nav>
@@ -69,7 +69,7 @@ import "../styles/global.css";
     display: flex;
   }
   @media (max-width: 720px) {
-    .social-links {
+    .internal-links {
       display: none;
     }
   }
