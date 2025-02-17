@@ -1,0 +1,128 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import DarkMode from "./DarkMode.astro";
+import { SITE_TITLE } from "../consts";
+import "../styles/global.css";
+---
+
+<!-- Navigation button with a smaller box around the hamburger menu -->
+<button id="nav-toggle" aria-label="Toggle Navigation">
+  <div class="icon-container">
+    <!-- SVG for the hamburger menu icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+      <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</button>
+
+<div class="dropdown-menu">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/tags">Tags</a></li>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.querySelector("#nav-toggle");
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+
+    if (toggleBtn && dropdownMenu) {
+      toggleBtn.addEventListener("click", function (event) {
+        dropdownMenu.classList.toggle("active");
+        event.stopPropagation();
+      });
+
+      document.addEventListener("click", function (event) {
+        const target = event.target as Node;
+        if (!dropdownMenu.contains(target) && target !== toggleBtn) {
+          dropdownMenu.classList.remove("active");
+        }
+      });
+    } else {
+      console.warn("Navbar toggle or dropdown menu not found!");
+    }
+  });
+</script>
+
+<style>
+  /* Box around the hamburger menu */
+  #nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .icon-container {
+    display: inline-block;
+    width: 38px;               /* Set to 40px to match the size of the sun and moon icons */
+    height: 38px;              /* Set to 40px */
+    background-color: transparent; /* Make background transparent */
+    border: 1px solid #ceebc2;    /* Apply a border (set color to green or any color you want) */
+    border-radius: 8px;        /* Rounded corners for the box */
+    display: flex;
+    justify-content: center;   /* Center the icon horizontally */
+    align-items: center;       /* Center the icon vertically */
+    transition: border-color 0.3s ease; /* Smooth transition for border color change */
+  }
+
+  /* Dark mode styles for the box */
+  html.dark .icon-container {
+    border-color: #222; /* Dark border color for dark mode */
+  }
+
+  /* SVG Color based on theme */
+  .icon-container svg path {
+    stroke: #3f9c1b; /* Default stroke color (matches the border) */
+  }
+
+  /* Dark mode icon color */
+  html.dark .icon-container svg path {
+    stroke: #fff; /* Change stroke color to white in dark mode */
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    width: 200px;
+    display: none;
+    flex-direction: column;
+    padding: 0.5rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  html.dark .dropdown-menu {
+    background: rgba(40, 40, 40, 0.9);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+  }
+
+  .dropdown-menu li {
+    list-style: none;
+    padding: 0.5rem 1rem;
+  }
+
+  .dropdown-menu a {
+    text-decoration: none;
+    color: var(--black);
+    display: block;
+    padding: 0.5rem;
+  }
+
+  .dropdown-menu a:hover {
+    background: var(--accent-light);
+  }
+
+  .dropdown-menu.active {
+    display: flex;
+  }
+
+  @media (max-width: 720px) {
+    #nav-toggle {
+      display: block; /* Show button on mobile */
+    }
+  }
+</style>

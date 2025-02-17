@@ -1,6 +1,7 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
 import DarkMode from "./DarkMode.astro";
+import HamburgerMenu from "./HamburgerMenu.astro";
 import { SITE_TITLE } from "../consts";
 import "../styles/global.css";
 ---
@@ -17,33 +18,11 @@ import "../styles/global.css";
     <div class="hello">
       <DarkMode />
       <!-- Mobile Toggle Button -->
-      <button id="nav-toggle" aria-label="Toggle Navigation"> ☰ </button>
-      <div class="dropdown-menu">
-        <li><a href="/">Home</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/tags">Tags</a></li>
-      </div>
+       <HamburgerMenu />
     </div>
   </nav>
 </header>
 
-<script>
-  // Wait until the page content is fully loaded
-  document.addEventListener("DOMContentLoaded", function () {
-    const toggleBtn = document.querySelector("#nav-toggle");
-    const dropdownMenu = document.querySelector(".dropdown-menu");
-
-    // Check if both elements exist before adding event listener
-    if (toggleBtn && dropdownMenu) {
-      toggleBtn.addEventListener("click", function () {
-        dropdownMenu.classList.toggle("active"); // Toggle visibility of dropdown
-      });
-    } else {
-      console.warn("Navbar toggle or dropdown menu not found!");
-    }
-  });
-</script>
 
 <style>
   .hello {
@@ -51,40 +30,6 @@ import "../styles/global.css";
     align-items: center;
     gap: 0.5rem;
     position: relative; /* Ensures dropdown is positioned relative to this container */
-  }
-
-  .dropdown-menu {
-    position: absolute;
-    right: 0;
-    top: 100%; /* Places it right below the button */
-    background: rgba(255, 255, 255, 0.9);
-    width: 200px;
-    display: none; /* Initially hidden */
-    flex-direction: column;
-    padding: 0.5rem 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-  }
-
-  .dropdown-menu li {
-    list-style: none;
-    padding: 0.5rem 1rem;
-  }
-
-  .dropdown-menu a {
-    text-decoration: none;
-    color: var(--black);
-    display: block;
-    padding: 0.5rem;
-  }
-
-  .dropdown-menu a:hover {
-    background: var(--accent-light);
-  }
-
-  /* Show dropdown when active */
-  .dropdown-menu.active {
-    display: flex; /* Shows the dropdown when 'active' class is added */
   }
 
   header {
@@ -123,20 +68,12 @@ import "../styles/global.css";
   }
 
   /* Hamburger Button */
-  #nav-toggle {
-    display: none;
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
+  
 
   @media (max-width: 720px) {
     .internal-links {
       display: none;
     }
-    #nav-toggle {
-      display: block; /* Show button on mobile */
-    }
+
   }
 </style>
