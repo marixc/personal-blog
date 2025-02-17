@@ -14,11 +14,79 @@ import "../styles/global.css";
       <a href="/about">About</a>
       <a href="/tags">Tags</a>
     </div>
-    <DarkMode />
+    <div class="hello">
+      <DarkMode />
+      <!-- Mobile Toggle Button -->
+      <button id="nav-toggle" aria-label="Toggle Navigation"> ☰ </button>
+      <div class="dropdown-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/tags">Tags</a></li>
+      </div>
+    </div>
   </nav>
 </header>
 
+<script>
+  // Wait until the page content is fully loaded
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.querySelector("#nav-toggle");
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+
+    // Check if both elements exist before adding event listener
+    if (toggleBtn && dropdownMenu) {
+      toggleBtn.addEventListener("click", function () {
+        dropdownMenu.classList.toggle("active"); // Toggle visibility of dropdown
+      });
+    } else {
+      console.warn("Navbar toggle or dropdown menu not found!");
+    }
+  });
+</script>
+
 <style>
+  .hello {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative; /* Ensures dropdown is positioned relative to this container */
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 100%; /* Places it right below the button */
+    background: rgba(255, 255, 255, 0.9);
+    width: 200px;
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    padding: 0.5rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  .dropdown-menu li {
+    list-style: none;
+    padding: 0.5rem 1rem;
+  }
+
+  .dropdown-menu a {
+    text-decoration: none;
+    color: var(--black);
+    display: block;
+    padding: 0.5rem;
+  }
+
+  .dropdown-menu a:hover {
+    background: var(--accent-light);
+  }
+
+  /* Show dropdown when active */
+  .dropdown-menu.active {
+    display: flex; /* Shows the dropdown when 'active' class is added */
+  }
+
   header {
     margin: 0;
     padding: 0;
@@ -36,41 +104,39 @@ import "../styles/global.css";
   html.dark nav a {
     color: var(--white); /* Change text color in dark mode */
   }
+
   nav {
+    width: 900px;
+    max-width: calc(100% - 2em); /* Ensures responsiveness */
+    margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 10px; /* Moves the DarkMode button 10px from the right */
+    padding: 1em 1em;
   }
+
   nav a {
     padding: 1em 0.5em;
     color: var(--black);
     border-bottom: 4px solid transparent;
     text-decoration: none;
   }
-  nav a.active {
-    text-decoration: none;
-    border-bottom-color: var(--accent-light);
+
+  /* Hamburger Button */
+  #nav-toggle {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
   }
 
-  html.dark nav a.active {
-    text-decoration: none;
-    border-bottom-color: var(--accent-dark);
-  }
-
-  /* Smooth transition for links */
-  nav a,
-  html.dark nav a {
-    transition: color 0.3s ease-in-out;
-  }
-
-  .social-links,
-  .social-links a {
-    display: flex;
-  }
   @media (max-width: 720px) {
     .internal-links {
       display: none;
+    }
+    #nav-toggle {
+      display: block; /* Show button on mobile */
     }
   }
 </style>
