@@ -35,8 +35,9 @@ import "../styles/global.css";
   header {
     margin: 0;
     padding: 0;
-    background: rgb(255, 255, 255);
-    box-shadow: 0 2px 8px rgba(var(--black), 5%);
+    background: rgb(255, 255, 255, 0.5);
+    /* box-shadow: 0 2px 8px rgba(var(--black), 5%); */
+    backdrop-filter: blur(9px); /* Apply blur effect */
     transition: background 0.3s ease-in-out; /* Smooth transition */
     position: sticky;
     top: 0;
@@ -44,8 +45,10 @@ import "../styles/global.css";
 
   /* Dark mode header */
   html.dark header {
-    background: rgb(27, 27, 39); /* Darker background */
-    box-shadow: 0 2px 8px rgba(var(--gray), 25%);
+    /* background: rgba(22, 22, 29, 0.5); */
+    background: rgba(30, 31, 40, 0.5);
+
+    /* box-shadow: 0 2px 8px rgba(var(--gray), 25%); */
   }
 
   html.dark nav a {

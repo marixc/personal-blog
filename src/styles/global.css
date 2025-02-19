@@ -18,10 +18,10 @@ main {
   margin: auto;
   padding: 3em 1em;
   /* To the new cow to keep the footer at the bottom */
-  min-height: 100dvh;
+  /* min-height: 100dvh;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr); */
 }
 body {
   font-family: "Atkinson", sans-serif;
@@ -38,8 +38,8 @@ html {
 
 /* Global styles for Dark Mode */
 html.dark {
-  background-color: #0d0d0d; /* Dark background */
-  color: #fff; /* Dark text color */
+  background-color: #1F1F28; /* Dark background */
+  color: #DCD7BA; /* Dark text color */
 }
 
 /* Media query for mobile devices */
