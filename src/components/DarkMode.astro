@@ -1,63 +1,123 @@
----
----
-<!-- Define hypertext markup language element -->
 <button id="themeToggle">
   <div class="icon-container">
-    <svg width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path class="sun" fill-rule="evenodd" d="M12 17.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm0 1.5a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm12-7a.8.8 0 0 1-.8.8h-2.4a.8.8 0 0 1 0-1.6h2.4a.8.8 0 0 1 .8.8zM4 12a.8.8 0 0 1-.8.8H.8a.8.8 0 0 1 0-1.6h2.5a.8.8 0 0 1 .8.8zm16.5-8.5a.8.8 0 0 1 0 1l-1.8 1.8a.8.8 0 0 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM6.3 17.7a.8.8 0 0 1 0 1l-1.7 1.8a.8.8 0 1 1-1-1l1.7-1.8a.8.8 0 0 1 1 0zM12 0a.8.8 0 0 1 .8.8v2.5a.8.8 0 0 1-1.6 0V.8A.8.8 0 0 1 12 0zm0 20a.8.8 0 0 1 .8.8v2.4a.8.8 0 0 1-1.6 0v-2.4a.8.8 0 0 1 .8-.8zM3.5 3.5a.8.8 0 0 1 1 0l1.8 1.8a.8.8 0 1 1-1 1L3.5 4.6a.8.8 0 0 1 0-1zm14.2 14.2a.8.8 0 0 1 1 0l1.8 1.7a.8.8 0 0 1-1 1l-1.8-1.7a.8.8 0 0 1 0-1z"/>
-      <path class="moon" fill-rule="evenodd" d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+    <!-- New Sun Icon -->
+    <svg
+      id="sunIcon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="black"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path
+        d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path
+        d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path
+        d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path
+        d="m19.07 4.93-1.41 1.41"></path>
+    </svg>
+
+    <!-- Moon Icon -->
+    <svg
+      id="moonIcon"
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+    >
+      <path fill="white" d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
     </svg>
   </div>
 </button>
 
-<!-- Defined style -->
 <style>
   #themeToggle {
     border: 0;
     background: none;
+    cursor: pointer;
   }
 
   .icon-container {
-    display: inline-block;
-    width: 40px;              /* Set a fixed square size */
-    height: 40px;             /* Keep it a perfect square */
-    background-color: #3f9c1b; /* Set background color */
-    border-radius: 8px;       /* Rounded corners */
     display: flex;
-    justify-content: center;  /* Center the icon horizontally */
-    align-items: center;      /* Center the icon vertically */
-  }
-    html.dark .icon-container {
-    background: rgba(182, 194, 18, 0.9); /* Dark mode background */
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #3f9c1b;
+    border-radius: 8px;
+    position: relative;
   }
 
-  .sun { fill: black; }
-  .moon { fill: transparent; }
+  /* Hide moon icon by default */
+  #moonIcon {
+    display: none;
+  }
 
-  :global(.dark) .sun { fill: transparent; }
-  :global(.dark) .moon { fill: white; }
+  /* Change background color for dark mode */
+  html.dark .icon-container {
+    background: rgba(182, 194, 18, 0.9);
+  }
+
+  /* Ensure sun icon has a visible stroke */
+  #sunIcon circle,
+  #sunIcon path {
+    stroke: black;
+    stroke-width: 2;
+  }
+
+  /* Adjust moon icon for dark mode */
+  html.dark #moonIcon path {
+    fill: white;
+  }
+
+  html.dark #sunIcon {
+    display: none;
+  }
+
+  html.dark #moonIcon {
+    display: block;
+  }
 </style>
 
-<!-- Right executable code -->
 <script is:inline>
   const theme = (() => {
-    const localStorageTheme = localStorage?.getItem("theme") ?? '';
-    if (['dark', 'light'].includes(localStorageTheme)) {
+    const localStorageTheme = localStorage?.getItem("theme") ?? "";
+    if (["dark", "light"].includes(localStorageTheme)) {
       return localStorageTheme;
     }
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
     }
-    return 'light';
+    return "light";
   })();
 
-  if (theme === 'light') {
-    document.documentElement.classList.remove('dark');
-  } else {
-    document.documentElement.classList.add('dark');
-  }
+  const sunIcon = document.getElementById("sunIcon");
+  const moonIcon = document.getElementById("moonIcon");
 
-  window.localStorage.setItem('theme', theme);
+  // Function to update icons based on theme
+  const updateIcons = (isDark) => {
+    if (isDark) {
+      moonIcon.style.display = "none";
+      sunIcon.style.display = "block";
+    } else {
+      moonIcon.style.display = "block";
+      sunIcon.style.display = "none";
+    }
+  };
+
+  // Set initial state
+  const isDarkMode = theme === "dark";
+  if (isDarkMode) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+  updateIcons(isDarkMode);
+
+  window.localStorage.setItem("theme", theme);
 
   const handleToggleClick = () => {
     const element = document.documentElement;
@@ -65,7 +125,12 @@
 
     const isDark = element.classList.contains("dark");
     localStorage.setItem("theme", isDark ? "dark" : "light");
-  }
 
-  document.getElementById("themeToggle")?.addEventListener("click", handleToggleClick);
+    // Update icons
+    updateIcons(isDark);
+  };
+
+  document
+    .getElementById("themeToggle")
+    ?.addEventListener("click", handleToggleClick);
 </script>
