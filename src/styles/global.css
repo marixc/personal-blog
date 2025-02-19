@@ -1,52 +1,50 @@
 /* Global color variables for light and dark modes */
 :root {
-	--header-background-light: #fff;          /* Light mode header background */
-	--header-text-light: #000;                /* Light mode header text */
-	--link-color-light: #000;                 /* Light mode link color */
-	--header-background-dark: #333;           /* Dark mode header background */
-	--header-text-dark: #fff;                 /* Dark mode header text */
-	--link-color-dark: #fff;                  /* Dark mode link color */
-	--accent-light: #2337ff;                  /* Accent color for active links */
-	--accent-dark: #1bfc39;                  /* Accent color for active links */
-	--black: 0, 0, 0;                         /* Black color */
-	--gray: 169, 169, 169;                    /* Gray color for shadows */
-	--white: 255, 255, 255;                   /* White color */
-  }
-  main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
+  --header-background-light: #fff; /* Light mode header background */
+  --header-text-light: #000; /* Light mode header text */
+  --link-color-light: #000; /* Light mode link color */
+  --header-background-dark: #333; /* Dark mode header background */
+  --header-text-dark: #fff; /* Dark mode header text */
+  --link-color-dark: #fff; /* Dark mode link color */
+  --accent-light: #2337ff; /* Accent color for active links */
+  --accent-dark: #1bfc39; /* Accent color for active links */
+  --black: 0, 0, 0; /* Black color */
+  --gray: 169, 169, 169; /* Gray color for shadows */
+  --white: 255, 255, 255; /* White color */
 }
-  body {
-	font-family: 'Atkinson', sans-serif;
-	margin: 0;
-	padding: 0;
+main {
+  width: 720px;
+  max-width: calc(100% - 2em);
+  margin: auto;
+  padding: 3em 1em;
+  /* To the new cow to keep the footer at the bottom */
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: minmax(0, 1fr);
 }
-  /* Global styles for Light Mode */
-  html {
-	background-color: #f1f5f9;                /* Light background */
-	color: #000;                              /* Light text color */
-	font-family: sans-serif;
-	transition: background-color 0.3s ease, color 0.3s ease;  /* Smooth transition */
-  }
-  
+body {
+  font-family: "Atkinson", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+/* Global styles for Light Mode */
+html {
+  background-color: #f1f5f9; /* Light background */
+  color: #000; /* Light text color */
+  font-family: sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
 
-  
-  /* Global styles for Dark Mode */
-  html.dark {
-	background-color: #0d0d0d;                   /* Dark background */
-	color: #fff;                                 /* Dark text color */
-  }
-  
-  
+/* Global styles for Dark Mode */
+html.dark {
+  background-color: #0d0d0d; /* Dark background */
+  color: #fff; /* Dark text color */
+}
 
-  
-  
-  /* Media query for mobile devices */
-  @media (max-width: 720px) {
-	.social-links {
-	  display: none; /* Hide social links on smaller screens */
-	}
+/* Media query for mobile devices */
+@media (max-width: 720px) {
+  .social-links {
+    display: none; /* Hide social links on smaller screens */
   }
-  
+}

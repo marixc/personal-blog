@@ -38,6 +38,8 @@ import "../styles/global.css";
     background: rgb(255, 255, 255);
     box-shadow: 0 2px 8px rgba(var(--black), 5%);
     transition: background 0.3s ease-in-out; /* Smooth transition */
+    position: sticky;
+    top: 0;
   }
 
   /* Dark mode header */
@@ -57,7 +59,7 @@ import "../styles/global.css";
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1em 1em;
+    padding: 0.5em 1em;
   }
 
   nav a {
@@ -66,6 +68,11 @@ import "../styles/global.css";
     border-bottom: 4px solid transparent;
     text-decoration: none;
   }
+
+h2 {
+  font-size: 1.2rem; /* Reduce title size if it's too big */
+  margin: 0; /* Remove unwanted margins */
+}
 
   /* Hamburger Button */
   
